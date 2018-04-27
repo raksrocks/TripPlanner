@@ -48,6 +48,7 @@ public class XMLUtils {
 	 */
 	private static String getString(String tagName, Element element) {
         NodeList list = element.getElementsByTagName(tagName);
+  
         if (list != null && list.getLength() > 0) {
             NodeList subList = list.item(0).getChildNodes();
 
@@ -60,13 +61,22 @@ public class XMLUtils {
     }
 	
 	/**
+	 * @param tagName
+	 * @param element
+	 * @return
+	 */
+	private static String getString(String tagName, Element element, String innerTagName) {
+        NodeList list = element.getElementsByTagName(tagName);
+        return getString(innerTagName,(Element)list.item(0));
+    }
+	/**
 	 * @param response
 	 * @param root
 	 * @param elementToRead
 	 * @param position
 	 * @return
 	 */
-	public static String getElement(String response,String root,String elementToRead,int position) {
+	public static String getElement(String response,String root,String elementToRead,int position, String innerElement) {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder;
 		Document doc = null;
@@ -79,6 +89,6 @@ public class XMLUtils {
 			e.printStackTrace();
 		}
 		NodeList nodes = doc.getElementsByTagName(root);
-		return getString(elementToRead,(Element)nodes.item(0));
+		return getString(elementToRead,(Element)nodes.item(position),innerElement);
 	}
 }

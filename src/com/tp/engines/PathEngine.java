@@ -25,7 +25,7 @@ public class PathEngine {
 	 */
 	public static Place determineNextPlaceByTime(Place origin, List<Place> destinations) {
 		
-		Integer nearest =0;
+		Integer nearest =1000000;
 		Place nearestPlace = origin;
 		for(Place dest: destinations) {
 			if(!origin.equals(dest)) {

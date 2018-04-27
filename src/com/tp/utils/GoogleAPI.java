@@ -106,15 +106,16 @@ public class GoogleAPI {
 		// rewrite the logic with XPath regex.
 		int count = response.split("<result>").length-1;
 		for(int i=0;i<count;i++) {
-			String result = XMLUtils.getElement(response, "PlaceSearchResponse", "result", i);
 			Place place = new Place();
-			place.setLat((XMLUtils.getElement(result, "location", "lat")));
-			place.setLng((XMLUtils.getElement(result, "location", "lng")));
-			place.setName(XMLUtils.getElement(result, "result", "name"));
-			place.setPlaceId(XMLUtils.getElement(result, "result", "place_id"));
-			place.setRating(Long.parseLong(XMLUtils.getElement(result, "result", "rating")));
+			place.setLat(XMLUtils.getElement(response, "PlaceSearchResponse",  "result", i,"lat"));
+			place.setLat((XMLUtils.getElement(response, "PlaceSearchResponse",  "result", i, "lat")));
+			place.setLng((XMLUtils.getElement(response, "PlaceSearchResponse",  "result", i, "lng")));
+			place.setName(XMLUtils.getElement(response, "PlaceSearchResponse",  "result", i, "name"));
+			place.setPlaceId(XMLUtils.getElement(response, "PlaceSearchResponse",  "result", i, "place_id"));
+			place.setRating(XMLUtils.getElement(response, "PlaceSearchResponse",  "result", i, "rating"));
 			getTimings(place);
 			places.add(place);
+			break;
 		}
 		return places;
 	}

@@ -15,7 +15,7 @@ public class Place {
 	String lng;
 	Timings timings;
 	Pricing pricing;
-	Long rating;
+	String rating;
 	String placeId;
 	Map<Place,Distance> distances;
 	/**
@@ -81,13 +81,13 @@ public class Place {
 	/**
 	 * @return the rating
 	 */
-	public Long getRating() {
+	public String getRating() {
 		return rating;
 	}
 	/**
 	 * @param rating the rating to set
 	 */
-	public void setRating(Long rating) {
+	public void setRating(String rating) {
 		this.rating = rating;
 	}
 	/**
