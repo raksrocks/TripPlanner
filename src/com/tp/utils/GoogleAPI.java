@@ -7,18 +7,23 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+
+import com.tp.beans.Distance;
+import com.tp.beans.Place;
 
 /**
  * @author RA312921
  *
  */
 public class GoogleAPI {
-	private static final String placesKey="AIzaSyANymbtH2hJwZrPUVH8uhGtdF-iFsNDvzE";
-	private static final String geoKey="AIzaSyAeJ5nMpaqfTjNzPVg9ZkYvmRw1JjzL6Y0";
-	private static final String mapsKey="AIzaSyAr1ykVTp2ggAOhE9aQ3_evLSl1qmnLaec";
+
 	
+	/**
+	 * @param urlToRead
+	 * @return
+	 * @throws IOException
+	 */
 	public static String call(String urlToRead) throws IOException {
 		StringBuilder result = new StringBuilder();
         URL url = new URL(urlToRead);
@@ -31,5 +36,15 @@ public class GoogleAPI {
         }
         rd.close();
         return result.toString();
+	}
+	
+	
+	/**
+	 * @param from
+	 * @param to
+	 * @return
+	 */
+	public static Distance getDistance(Place from, Place to) {
+		return null;
 	}
 }
