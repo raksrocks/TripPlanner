@@ -1,31 +1,31 @@
 package com.tp.beans;
 
 public class Distance {
-	Integer timeInMinutes;
+	Integer timeInSeconds;
 	/**
 	 * @return the timeInMinutes
 	 */
-	public Integer getTimeInMinutes() {
-		return timeInMinutes;
+	public Integer getTime() {
+		return timeInSeconds;
 	}
 	/**
 	 * @param timeInMinutes the timeInMinutes to set
 	 */
-	public void setTimeInMinutes(Integer timeInMinutes) {
-		this.timeInMinutes = timeInMinutes;
+	public void setTime(Integer timeInMinutes) {
+		this.timeInSeconds = timeInMinutes;
 	}
 	/**
 	 * @return the distanceInMiles
 	 */
-	public Long getDistanceInMiles() {
-		return distanceInMiles;
+	public Long getDistance() {
+		return distance;
 	}
 	/**
 	 * @param distanceInMiles the distanceInMiles to set
 	 */
-	public void setDistanceInMiles(Long distanceInMiles) {
-		this.distanceInMiles = distanceInMiles;
+	public void setDistance(Long distanceInMiles) {
+		this.distance = distanceInMiles;
 	}
-	Long distanceInMiles;
+	Long distance;
 
 }

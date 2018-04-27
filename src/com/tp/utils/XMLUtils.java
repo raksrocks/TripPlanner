@@ -58,4 +58,27 @@ public class XMLUtils {
 
         return null;
     }
+	
+	/**
+	 * @param response
+	 * @param root
+	 * @param elementToRead
+	 * @param position
+	 * @return
+	 */
+	public static String getElement(String response,String root,String elementToRead,int position) {
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder;
+		Document doc = null;
+		
+		try {
+			factory.setNamespaceAware(true);
+			builder = factory.newDocumentBuilder();
+			doc = builder.parse(new InputSource(new StringReader(response)));
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		NodeList nodes = doc.getElementsByTagName(root);
+		return getString(elementToRead,(Element)nodes.item(0));
+	}
 }

@@ -5,6 +5,7 @@ package com.tp.engines;
 
 import java.util.List;
 
+import com.tp.beans.Distance;
 import com.tp.beans.Place;
 import com.tp.utils.GoogleAPI;
 
@@ -16,14 +17,51 @@ public class PathEngine {
 	
 	
 	/**
+	 * Get nearest destination from the list in a given time.
 	 * @param origin
 	 * @param destinations
 	 * @param time
 	 * @return
 	 */
-	public static Place determineNextPlace(Place origin, List<Place> destinations, int time) {
+	public static Place determineNextPlaceByTime(Place origin, List<Place> destinations) {
 		
-		return origin;
+		Integer nearest =0;
+		Place nearestPlace = origin;
+		for(Place dest: destinations) {
+			if(!origin.equals(dest)) {
+				Distance distance = GoogleAPI.getDistance(origin, dest);
+				
+				if(nearest.intValue()<distance.getTime())
+					continue;
+				nearest = distance.getTime();
+				nearestPlace = dest;
+			}
+		}
+		return nearestPlace;
+	}
+	
+	/**
+	 * Get nearest destination from the list sorted by distance
+	 * @param origin
+	 * @param destinations
+	 * @param time
+	 * @return
+	 */
+	public static Place determineNextPlaceByDistance(Place origin, List<Place> destinations) {
+		
+		Integer nearest =0;
+		Place nearestPlace = origin;
+		for(Place dest: destinations) {
+			if(!origin.equals(dest)) {
+				Distance distance = GoogleAPI.getDistance(origin, dest);
+				
+				if(nearest.intValue()<distance.getDistance())
+					continue;
+				nearest = distance.getDistance().intValue();
+				nearestPlace = dest;
+			}
+		}
+		return nearestPlace;
 	}
 	
 	/**
