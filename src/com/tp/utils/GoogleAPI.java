@@ -18,13 +18,15 @@ import com.tp.beans.Place;
  */
 public class GoogleAPI {
 
-	
+	//private static final String placesKey="AIzaSyANymbtH2hJwZrPUVH8uhGtdF-iFsNDvzE";
+	//private static final String geoKey="AIzaSyAeJ5nMpaqfTjNzPVg9ZkYvmRw1JjzL6Y0";
+	private static final String mapsKey="AIzaSyAr1ykVTp2ggAOhE9aQ3_evLSl1qmnLaec";
 	/**
 	 * @param urlToRead
 	 * @return
 	 * @throws IOException
 	 */
-	public static String call(String urlToRead) throws IOException {
+	private static String call(String urlToRead) throws IOException {
 		StringBuilder result = new StringBuilder();
         URL url = new URL(urlToRead);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -45,6 +47,17 @@ public class GoogleAPI {
 	 * @return
 	 */
 	public static Distance getDistance(Place from, Place to) {
-		return null;
+		
+		String url= "https://maps.googleapis.com/maps/api/distancematrix/xml?units=imperial&origins="+from.getLat()+","+from.getLng()+"&destinations="+to.getLat()+","+to.getLng()+"&key="+mapsKey;
+		String response="";
+		try{ response = call(url); } catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(response.equalsIgnoreCase(""))
+			return null;
+		Distance distance = new Distance();
+		distance.setDistanceInMiles(Long.parseLong(XMLUtils.getElement(response, "duration", "value")));
+		distance.setTimeInMinutes(Integer.parseInt(XMLUtils.getElement(response, "distance", "value")));		
+		return distance;
 	}
 }
