@@ -11,8 +11,8 @@ import java.util.Map;
  */
 public class Place {
 	String name;
-	Long lat;
-	Long lng;
+	String lat;
+	String lng;
 	Timings timings;
 	Pricing pricing;
 	Long rating;
@@ -33,25 +33,25 @@ public class Place {
 	/**
 	 * @return the lat
 	 */
-	public Long getLat() {
+	public String getLat() {
 		return lat;
 	}
 	/**
 	 * @param lat the lat to set
 	 */
-	public void setLat(Long lat) {
+	public void setLat(String lat) {
 		this.lat = lat;
 	}
 	/**
 	 * @return the lng
 	 */
-	public Long getLng() {
+	public String getLng() {
 		return lng;
 	}
 	/**
 	 * @param lng the lng to set
 	 */
-	public void setLng(Long lng) {
+	public void setLng(String lng) {
 		this.lng = lng;
 	}
 	/**

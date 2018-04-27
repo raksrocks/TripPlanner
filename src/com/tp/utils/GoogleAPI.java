@@ -80,8 +80,8 @@ public class GoogleAPI {
 		if(response.equalsIgnoreCase(""))
 			return null;
 		
-		location.setLat(Long.parseLong(XMLUtils.getElement(response, "GeocodeResponse", "lat")));
-		location.setLng(Long.parseLong(XMLUtils.getElement(response, "GeocodeResponse", "lng")));
+		location.setLat((XMLUtils.getElement(response, "GeocodeResponse", "lat")));
+		location.setLng((XMLUtils.getElement(response, "GeocodeResponse", "lng")));
 		
 		return location;
 	}
@@ -103,19 +103,31 @@ public class GoogleAPI {
 		if(response.equalsIgnoreCase(""))
 			return null;
 		
+		// rewrite the logic with XPath regex.
 		int count = response.split("<result>").length-1;
 		for(int i=0;i<count;i++) {
 			String result = XMLUtils.getElement(response, "PlaceSearchResponse", "result", i);
 			Place place = new Place();
-			place.setLat(Long.parseLong(XMLUtils.getElement(result, "location", "lat")));
-			place.setLng(Long.parseLong(XMLUtils.getElement(result, "location", "lng")));
+			place.setLat((XMLUtils.getElement(result, "location", "lat")));
+			place.setLng((XMLUtils.getElement(result, "location", "lng")));
 			place.setName(XMLUtils.getElement(result, "result", "name"));
 			place.setPlaceId(XMLUtils.getElement(result, "result", "place_id"));
 			place.setRating(Long.parseLong(XMLUtils.getElement(result, "result", "rating")));
+			getTimings(place);
 			places.add(place);
 		}
-			
-		
 		return places;
+	}
+
+
+	private static void getTimings(Place place) {
+		
+		String url =URL+"place/details/xml?placeid="+place.getPlaceId()+"&key="+placesKey;								
+		String response="";
+		try{ response = call(url); } catch (Exception e) {
+			e.printStackTrace();
+		}
+		//TODO: Code later.
+		
 	}
 }
