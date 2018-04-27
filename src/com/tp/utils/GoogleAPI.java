@@ -74,6 +74,7 @@ public class GoogleAPI {
 		Place location = new Place();
 		String url =URL+"geocode/xml?address="+address+"&key="+geoKey;
 		String response="";
+		System.out.println("Calling: "+url);
 		try{ response = call(url); } catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -115,7 +116,7 @@ public class GoogleAPI {
 			place.setRating(XMLUtils.getElement(response, "PlaceSearchResponse",  "result", i, "rating"));
 			getTimings(place);
 			places.add(place);
-			break;
+			//break;
 		}
 		return places;
 	}
