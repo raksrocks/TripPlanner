@@ -31,7 +31,7 @@ public class PathEngine {
 			if(!origin.equals(dest) && dest.getName()!=null&& dest.getName().length()!=0) {
 				Distance distance = GoogleAPI.getDistance(origin, dest);
 				Integer time = distance.getTime();
-				System.out.println(dest.getName()+" is approximately "+(time.intValue() % 3600) / 60+" minutes drive far from you");
+				//System.out.println(dest.getName()+" is approximately "+(time.intValue()) / 60+" minutes ("+time.intValue()+"ms) drive far from you");
 				if(nearest.intValue()<distance.getTime())
 					continue;
 				nearest = distance.getTime();

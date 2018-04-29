@@ -33,6 +33,7 @@ public class GoogleAPI {
 	private static String call(String urlToRead) throws IOException {
 		StringBuilder result = new StringBuilder();
         URL url = new URL(urlToRead);
+       // System.out.println(urlToRead);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -60,8 +61,8 @@ public class GoogleAPI {
 		if(response.equalsIgnoreCase(""))
 			return null;
 		Distance distance = new Distance();
-		distance.setDistance(Long.parseLong(XMLUtils.getElement(response, "duration", "value")));
-		distance.setTime(Integer.parseInt(XMLUtils.getElement(response, "distance", "value")));		
+		distance.setDistance(Long.parseLong(XMLUtils.getElement(response, "distance", "value")));
+		distance.setTime(Integer.parseInt(XMLUtils.getElement(response, "duration", "value")));		
 		return distance;
 	}
 	

@@ -102,7 +102,13 @@ public class XMLUtils {
 			if(i==position) {
 				Element ele = (Element) n;
 				//System.out.println("This:"+ele.getElementsByTagName(innerElement).item(0).getTextContent());
-			    return (ele.getElementsByTagName(innerElement).item(0).getTextContent());
+				String textContent="";
+				try {
+				 textContent = ele.getElementsByTagName(innerElement).item(0).getTextContent();
+				}catch (Exception e) {
+					return "";
+				}
+			    return textContent;
 			 }
 			 
 		}
