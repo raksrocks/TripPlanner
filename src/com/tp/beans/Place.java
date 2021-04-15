@@ -6,7 +6,7 @@ package com.tp.beans;
 import java.util.Map;
 
 /**
- * @author RA312921
+ * @author Rakesh
  *
  */
 public class Place {
